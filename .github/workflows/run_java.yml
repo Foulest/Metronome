@@ -1,0 +1,22 @@
+name: Run Java Project
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '18.0.2'
+
+      - name: Compile and Run Java Code
+        run: |
+          javac Main.java
+          java Main
