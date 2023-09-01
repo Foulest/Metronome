@@ -8,6 +8,7 @@ import net.foulest.pokemon.data.Type;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Pokemon {
@@ -151,7 +152,7 @@ public class Pokemon {
      * Doesn't generate certain banned held items if Metronome Mode is enabled.
      */
     public HeldItem generateHeldItem() {
-        List<HeldItem> bannedItems = List.of(HeldItem.HEAVY_DUTY_BOOTS);
+        List<HeldItem> bannedItems = Collections.singletonList(HeldItem.HEAVY_DUTY_BOOTS);
 
         HeldItem randomItem;
         do {
@@ -183,42 +184,42 @@ public class Pokemon {
                 int randomStatChoice = (int) (Math.random() * 6);
 
                 switch (randomStatChoice) {
-                    case 0 -> {
+                    case 0:
                         if (evHP + ev > maxEvForStat) {
                             ev = maxEvForStat - evHP;
                         }
                         evHP += ev;
-                    }
-                    case 1 -> {
+                        break;
+                    case 1:
                         if (evAtk + ev > maxEvForStat) {
                             ev = maxEvForStat - evAtk;
                         }
                         evAtk += ev;
-                    }
-                    case 2 -> {
+                        break;
+                    case 2:
                         if (evDef + ev > maxEvForStat) {
                             ev = maxEvForStat - evDef;
                         }
                         evDef += ev;
-                    }
-                    case 3 -> {
+                        break;
+                    case 3:
                         if (evSpAtk + ev > maxEvForStat) {
                             ev = maxEvForStat - evSpAtk;
                         }
                         evSpAtk += ev;
-                    }
-                    case 4 -> {
+                        break;
+                    case 4:
                         if (evSpDef + ev > maxEvForStat) {
                             ev = maxEvForStat - evSpDef;
                         }
                         evSpDef += ev;
-                    }
-                    case 5 -> {
+                        break;
+                    case 5:
                         if (evSpeed + ev > maxEvForStat) {
                             ev = maxEvForStat - evSpeed;
                         }
                         evSpeed += ev;
-                    }
+                        break;
                 }
 
                 evTotal += ev;

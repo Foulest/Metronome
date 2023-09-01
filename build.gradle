@@ -3,9 +3,9 @@ plugins {
     id 'application'
 }
 
-group = 'net.foulest'
-mainClassName = 'net.foulest.Main'
-version = '1.0-SNAPSHOT'
+group 'net.foulest'
+version '1.0.0'
+compileJava.options.encoding = 'UTF-8'
 
 repositories {
     mavenCentral()
@@ -15,4 +15,12 @@ dependencies {
     // Uncomment these when needed
     // implementation 'com.squareup.okhttp3:okhttp:4.9.1'
     // implementation 'com.google.code.gson:gson:2.8.9'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'net.foulest.Main'
+        )
+    }
 }
