@@ -18,5 +18,5 @@ jobs:
 
       - name: Compile and Run Java Code
         run: |
-          javac Main.java
-          java Main
+          javac net/foulest/**/*.java
+          java net.foulest.Main
