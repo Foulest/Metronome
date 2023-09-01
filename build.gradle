@@ -1,15 +1,18 @@
 plugins {
-    id("java")
+    id 'java'
+    id 'application'
 }
 
-group = "net.foulest"
-version = "1.0-SNAPSHOT"
+group = 'net.foulest'
+mainClassName = 'net.foulest.Main'
+version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-//    implementation("com.squareup.okhttp3:okhttp:4.9.1")
-//    implementation("com.google.code.gson:gson:2.8.9")
+    // Uncomment these when needed
+    // implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    // implementation 'com.google.code.gson:gson:2.8.9'
 }
