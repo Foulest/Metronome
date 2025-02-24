@@ -1,10 +1,10 @@
-package net.foulest.pokemon;
+package net.foulest.metronome.pokemon;
 
-import net.foulest.Main;
-import net.foulest.pokemon.data.Ability;
-import net.foulest.pokemon.data.HeldItem;
-import net.foulest.pokemon.data.Nature;
-import net.foulest.pokemon.data.Type;
+import net.foulest.metronome.Main;
+import net.foulest.metronome.pokemon.data.Ability;
+import net.foulest.metronome.pokemon.data.HeldItem;
+import net.foulest.metronome.pokemon.data.Nature;
+import net.foulest.metronome.pokemon.data.Type;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -103,8 +103,9 @@ public class Pokemon {
                 Ability.STAMINA, Ability.WONDER_GUARD, Ability.HARVEST, Ability.CHEEK_POUCH, Ability.SNOW_WARNING);
 
         if (Main.metronomeMode && possibleAbilities.size() == 1 && bannedAbilities.contains(possibleAbilities.get(0))) {
-            // If the only possible ability is in the bannedAbilities list, generate a completely random ability.
             Ability randomNewAbility;
+
+            // If the only possible ability is in the bannedAbilities list, generate a completely random ability.
             do {
                 randomNewAbility = Ability.values()[(int) (Math.random() * Ability.values().length)];
             } while (bannedAbilities.contains(randomNewAbility));
@@ -112,6 +113,7 @@ public class Pokemon {
 
         } else {
             Ability randomAbility;
+
             do {
                 randomAbility = possibleAbilities.get((int) (Math.random() * possibleAbilities.size()));
             } while (Main.metronomeMode && bannedAbilities.contains(randomAbility));
@@ -133,6 +135,7 @@ public class Pokemon {
      */
     public Type generateTeraType() {
         Type randomType;
+
         do {
             randomType = Type.values()[(int) (Math.random() * Type.values().length)];
         } while (Main.metronomeMode && randomType == Type.STEEL);
@@ -153,12 +156,11 @@ public class Pokemon {
      */
     public HeldItem generateHeldItem() {
         List<HeldItem> bannedItems = Collections.singletonList(HeldItem.HEAVY_DUTY_BOOTS);
-
         HeldItem randomItem;
+
         do {
             randomItem = HeldItem.values()[(int) (Math.random() * HeldItem.values().length)];
         } while (Main.metronomeMode && bannedItems.contains(randomItem));
-
         return randomItem;
     }
 
@@ -190,35 +192,43 @@ public class Pokemon {
                         }
                         evHP += ev;
                         break;
+
                     case 1:
                         if (evAtk + ev > maxEvForStat) {
                             ev = maxEvForStat - evAtk;
                         }
                         evAtk += ev;
                         break;
+
                     case 2:
                         if (evDef + ev > maxEvForStat) {
                             ev = maxEvForStat - evDef;
                         }
                         evDef += ev;
                         break;
+
                     case 3:
                         if (evSpAtk + ev > maxEvForStat) {
                             ev = maxEvForStat - evSpAtk;
                         }
                         evSpAtk += ev;
                         break;
+
                     case 4:
                         if (evSpDef + ev > maxEvForStat) {
                             ev = maxEvForStat - evSpDef;
                         }
                         evSpDef += ev;
                         break;
+
                     case 5:
                         if (evSpeed + ev > maxEvForStat) {
                             ev = maxEvForStat - evSpeed;
                         }
                         evSpeed += ev;
+                        break;
+
+                    default:
                         break;
                 }
 

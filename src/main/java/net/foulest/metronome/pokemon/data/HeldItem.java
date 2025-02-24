@@ -1,7 +1,6 @@
-package net.foulest.pokemon.data;
+package net.foulest.metronome.pokemon.data;
 
 public enum HeldItem {
-
     CHOICE_BAND,
     CHOICE_SCARF,
     CHOICE_SPECS,

@@ -1,7 +1,6 @@
-package net.foulest.pokemon.data;
+package net.foulest.metronome.pokemon.data;
 
 public enum Nature {
-
     ADAMANT,
     BASHFUL,
     BOLD,

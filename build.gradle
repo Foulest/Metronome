@@ -1,26 +1,97 @@
 plugins {
-    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'maven-publish'
     id 'application'
+    id 'java'
 }
 
 group 'net.foulest'
-version '1.0.0'
-compileJava.options.encoding = 'UTF-8'
+version '1.0.1'
+description = 'Metronome'
+
+// Set the project's language level
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
 
 repositories {
+    // Maven central repository
     mavenCentral()
+    mavenLocal()
+
+    // Local libraries
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
-    // Uncomment these when needed
-    // implementation 'com.squareup.okhttp3:okhttp:4.9.1'
-    // implementation 'com.google.code.gson:gson:2.8.9'
+    // JetBrains Annotations - for code inspection and documentation
+    // https://mvnrepository.com/artifact/org.jetbrains/annotations
+    compileOnly group: 'org.jetbrains', name: 'annotations', version: '26.0.2'
+
+    // Lombok - for reducing boilerplate code
+    // https://projectlombok.org
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.36'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.36'
 }
 
-jar {
-    manifest {
-        attributes(
-                'Main-Class': 'net.foulest.Main'
-        )
+tasks {
+    jar {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        archiveFileName.set("${project.name}-${project.version}-default.jar")
+
+        // Set the 'Main-Class' attribute in the JAR manifest
+        manifest {
+            attributes 'Main-Class': 'net.foulest.metronome.Main'
+        }
+    }
+
+    shadowJar {
+        mainClassName = 'net.foulest.metronome.Main'
+        archiveFileName.set("${project.name}-${project.version}.jar")
+    }
+
+    compileJava {
+        dependsOn(clean)
+        options.encoding = 'UTF-8'
+    }
+
+    build {
+        dependsOn(shadowJar)
+    }
+
+    distZip {
+        dependsOn(shadowJar)
+    }
+
+    distTar {
+        dependsOn(shadowJar)
+    }
+
+    startScripts {
+        dependsOn(shadowJar)
+    }
+
+    startShadowScripts {
+        dependsOn(jar)
+    }
+
+    tasks.register('sourceJar', Jar) {
+        from sourceSets.main.allJava
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'net.foulest.metronome'
+            artifactId = project.name
+            version = project.version
+
+            from components.java
+        }
     }
 }

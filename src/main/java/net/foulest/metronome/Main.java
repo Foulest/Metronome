@@ -1,20 +1,20 @@
-package net.foulest;
+package net.foulest.metronome;
 
-import net.foulest.pokemon.Pokemon;
-import net.foulest.pokemon.data.Ability;
-import net.foulest.pokemon.data.Type;
+import net.foulest.metronome.pokemon.Pokemon;
+import net.foulest.metronome.pokemon.data.Ability;
+import net.foulest.metronome.pokemon.data.Type;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import java.awt.datatransfer.StringSelection;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
 
 public class Main {
 
@@ -1153,7 +1153,7 @@ public class Main {
      * @param input The string to capitalize.
      * @return The capitalized string.
      */
-    public static String capitalize(String input) {
+    public static @NotNull String capitalize(@NotNull String input) {
         StringBuilder result = new StringBuilder();
         boolean capitalizeNext = true;  // Flag to determine if the next char should be capitalized
 
@@ -1166,9 +1166,9 @@ public class Main {
             } else {
                 c = Character.toLowerCase(c);
             }
+
             result.append(c);
         }
-
         return result.toString();
     }
 }
